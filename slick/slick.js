@@ -1495,6 +1495,10 @@
         $(window).on('load.slick.slick-' + _.instanceUid, _.setPosition);
         $(_.setPosition);
 
+		document.ontouchmove = function (e) {
+            return true;
+        }
+		
     };
 
     Slick.prototype.initUI = function() {
@@ -2672,6 +2676,10 @@
 
     Slick.prototype.swipeEnd = function(event) {
 
+		document.ontouchmove = function (e) {
+            return true;
+        }
+	
         var _ = this,
             slideCount,
             direction;
@@ -2825,6 +2833,9 @@
         swipeDirection = _.swipeDirection();
 
         if (event.originalEvent !== undefined && _.touchObject.swipeLength > 4) {
+			document.ontouchmove = function (e) {
+                e.preventDefault();
+            }
             _.swiping = true;
             event.preventDefault();
         }
